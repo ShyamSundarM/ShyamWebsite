@@ -1,0 +1,90 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  height: 100vh;
+  background-color: hsl(0, 0%, 98%);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  background: linear-gradient(135deg, hsl(240, 5%, 96%), hsl(240, 10%, 92%));
+  border-right: 1px solid hsl(240, 6%, 90%);
+}
+
+.brandArea {
+  max-width: 500px;
+  margin-bottom: 3rem;
+}
+
+.brandTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: hsl(240, 5%, 20%);
+}
+
+.brandSubtitle {
+  color: hsl(240, 4%, 40%);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.featureCard {
+  width: 400px;
+  background: white;
+  box-shadow: 0 2px 6px hsl(240, 4%, 85%);
+}
+
+.featureList {
+  list-style: none;
+  padding-left: 0;
+  color: hsl(240, 4%, 30%);
+}
+
+.featureList li {
+  margin-bottom: 0.5rem;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.authBox {
+  width: 340px;
+}
+
+/* ✅ mobile responsiveness */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .left {
+    border-right: none;
+    border-bottom: 1px solid hsl(240, 6%, 90%);
+    padding: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .featureCard {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .right {
+    padding: 2rem 1rem;
+  }
+
+  .authBox {
+    width: 100%;
+    max-width: 360px;
+  }
+}
