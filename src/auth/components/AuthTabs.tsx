@@ -12,10 +12,7 @@ export default function AuthTabs() {
   }
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-      <Tabs
-        defaultValue={currentTab}
-        onValueChange={(val) => setCurrentTab(val)}
-      >
+      <Tabs value={currentTab} onValueChange={(val) => setCurrentTab(val)}>
         <TabsList style={{ alignSelf: "center" }}>
           <TabsTrigger value="login">Login</TabsTrigger>
           <TabsTrigger value="register">Register</TabsTrigger>

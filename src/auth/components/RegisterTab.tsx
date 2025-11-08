@@ -8,8 +8,13 @@ import {
 } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import {
+  Field,
+  FieldLabel,
+  FieldContent,
+  FieldGroup,
+} from "@/components/ui/field";
 
 import { TabsContent } from "@/components/ui/tabs";
 import { useState } from "react";
@@ -36,8 +41,17 @@ export default function RegisterTab(props: Props) {
     var resp = await authService.register(email, password, fullName);
     setIsLoading(false);
     if (resp) {
+      //on success
       props.onTabChange("login");
+      clearFormFeilds();
     }
+  }
+
+  function clearFormFeilds() {
+    setEmail("");
+    setFullName("");
+    setPassword("");
+    setRePassword("");
   }
 
   return (
@@ -48,43 +62,68 @@ export default function RegisterTab(props: Props) {
           <CardDescription>Create an account to get started.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-fullName">Full Name</Label>
-            <Input
-              id="tabs-demo-fullName"
-              type="text"
-              disabled={loading}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-email">Email Address</Label>
-            <Input
-              id="tabs-demo-email"
-              type="email"
-              autoComplete="email"
-              disabled={loading}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-new">New password</Label>
-            <Input
-              id="tabs-demo-new"
-              type="password"
-              disabled={loading}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-demo-re-new">Re-Enter password</Label>
-            <Input
-              id="tabs-demo-re-new"
-              type="password"
-              disabled={loading}
-              onChange={(e) => setRePassword(e.target.value)}
-            />
-          </div>
+          <FieldGroup>
+            <Field>
+              <FieldLabel htmlFor="tabs-demo-fullName">Full Name</FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-demo-fullName"
+                  type="text"
+                  disabled={loading}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="tabs-demo-email">Email Address</FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-demo-email"
+                  type="email"
+                  autoComplete="email"
+                  disabled={loading}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="tabs-demo-new">New password</FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-demo-new"
+                  type="password"
+                  disabled={loading}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="tabs-demo-re-new">
+                Re-Enter password
+              </FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-demo-re-new"
+                  type="password"
+                  disabled={loading}
+                  value={rePassword}
+                  onChange={(e) => setRePassword(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+            <Field orientation="horizontal">
+              <Button type="submit">Submit</Button>
+              <Button variant="outline" type="button">
+                Cancel
+              </Button>
+            </Field>
+          </FieldGroup>
         </CardContent>
         <CardFooter>
           <Button onClick={createClickHandler}>

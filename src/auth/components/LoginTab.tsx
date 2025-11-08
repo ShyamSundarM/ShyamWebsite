@@ -8,8 +8,13 @@ import {
 } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import {
+  Field,
+  FieldLabel,
+  FieldContent,
+  FieldGroup,
+} from "@/components/ui/field";
 
 import { TabsContent } from "@/components/ui/tabs";
 import { useState } from "react";
@@ -40,25 +45,34 @@ export default function LoginTab() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-emailid">Email Address</Label>
-            <Input
-              id="tabs-emailid"
-              autoComplete="email"
-              type="email"
-              disabled={loading}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="tabs-password">Password</Label>
-            <Input
-              id="tabs-password"
-              type="password"
-              disabled={loading}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <FieldGroup>
+            <Field>
+              <FieldLabel htmlFor="tabs-emailid">Email Address</FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-emailid"
+                  autoComplete="email"
+                  type="email"
+                  disabled={loading}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="tabs-password">Password</FieldLabel>
+              <FieldContent>
+                <Input
+                  id="tabs-password"
+                  type="password"
+                  disabled={loading}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FieldContent>
+            </Field>
+          </FieldGroup>
         </CardContent>
         <CardFooter>
           <Button onClick={LoginClickHandler}>
